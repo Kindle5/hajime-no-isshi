@@ -1,0 +1,20 @@
+main.sb-main.notice .container1 p + p {
+  margin-top: 16px;
+}
+main.sb-main.notice .container1 .signature {
+  margin-top: 16px;
+  text-align: end;
+}
+main.sb-main.notice .anchor-white {
+  margin: 32px auto 0;
+  width: 100px;
+}
+main.sb-main.notice .anchor-white img {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  main.sb-main.notice .container1 {
+    max-width: 720px;
+  }
+}
