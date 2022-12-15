@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnosis 「はじめの一矢」ポータルサイト</title>
+  <link rel="icon" href="../../img/common/favicon.png">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="css/style_Diagnosis.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="艦これ「はじめの一矢」艦娘診断">
+  <meta name="twitter:description" content="あなたを艦娘化すると…？">
+  <meta property="og:description" content="あなたを艦娘化すると…？">
+  <meta property="og:image" content="https://kindle5.github.io/hajime-no-isshi/img/top/thumbnails/thumbnail1.jpg">
+  <meta property="og:url" content="scriptでURL挿入" class="og url">
+  <script>
+    const metaOgUrl = document.querySelector('.og.url');
+    metaOgUrl.setAttribute('content', `${location.href}`);
+  </script>
+</head>
+
+<body>
+  <header>
+    <a href="../../index.html" alt="サイトトップへ">
+      <img src="../../img/common/title_logo_small_2.png" class="logo">
+    </a>
+    <div class="m-menu">
+      <h2>Menu</h2>
+      <img src="../../img/common/menu_icon_mobile_2.png" id="open" alt="メニューを開く">
+    </div>
+  </header>
+
+  <div class="overlay">
+    <img src="../../img/common/menu_icon_mobile.png" id="close" alt="メニューを閉じる">
+    <nav>
+      <ul class="menu">
+        <li id="m1" class="index">
+          <a href="../../index.html">Top</a>
+        </li>
+        <li id="m2" class="m-exp Notice">
+          <a href="../../subpages/notice.html">Notice</a>
+        </li>
+        <li id="m3" class="m-exp Story">
+          <a href="../../subpages/story.html">Story</a>
+        </li>
+        <li id="m4" class="m-exp Character">
+          <a href="../../subpages/characters.html">Characters</a>
+        </li>
+        <li id="m5" class="m-exp Gallery">
+          <a href="../../subpages/gallery.html">Gallery</a>
+        </li>
+        <li id="m6" class="m-exp Diagnosis">
+          <a href="../../subpages/diagnosis/Diagnosis.html" class="allowed_wrap">Diagnosis</a>
+        </li>
+        <li id="m7" class="m-exp Special_Thanks">
+          <a href="../../subpages/specialthanks.html">Special Thanks</a>
+        </li>
+        <!-- <li id="m8" class="m-exp Links">
+          <a href="../../subpages/links.html">Links</a>
+        </li> -->
+      </ul>
+      <div class="menu-btn l-close">
+        <p>
+          <i class="bi bi-arrow-bar-left"></i>
+          CLOSE
+        </p>
+      </div>
+      <div class="menu-btn l-open disappear">
+        <p>
+          <i class="bi bi-arrow-bar-right"></i>
+        </p>
+      </div>
+    </nav>
+  </div>
+
+  <div class="header-space"></div>
+
+  <div class="page-bg">
+    <img src="../../img/common/Zuikaku_bg.png">
+  </div>
+
+  <main class="sb-main diagnosis questions">
+    <div id="target"></div>
+    <div class="page-index">
+      <span id="current-page">0</span> / <span id="page-length">0</span>
+    </div>
+    <div class="box-scroll">
+      <a href="#" id="to-top">
+        <i class="bi bi-arrow-up-square-fill"></i>
+      </a>
+    </div>
+    <div class="page_title">
+      <h1>Diagnosis</h1>
+    </div>
+
+    <div class="chara_data"></div>
+    <div class="container1 diagnosis show">
+      <h2>あなたを艦娘化すると…？</h2>
+      <p>あなたの性格に近い艦娘をピックアップ！</p>
+      <p>名前を入力して下さい（未入力でも可）</p>
+      <input type="text" id="userName" maxlength="10" placeholder="10文字以内"><br>
+      <button class="btn next start">診断開始</button>
+      <p class="annotation">
+        ※注釈※<br>
+        専門家による監修はありません。<br>
+        占い感覚でお楽しみ下さい。<br>
+        また、本家とは異なるキャラ解釈を行っています。<br>
+        あらかじめご了承下さい。<br>
+      </p>
+    </div>
+    <div class="container1 diagnosis bf">
+      <div class="que">
+        <p>
+          自分の性格に合わせてツマミを調節して下さい。<br>
+          <span class="attn">数字は頻度や程度の目安です。</span>
+        </p>
+      </div>
+      <ol class="bf-test agreeableness">
+        <li class="q1">
+          時間の使い方について
+        </li>
+        <div class="q1">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>自分のやりたい事に使う</p>
+            <p>人のために出し惜しまない</p>
+          </div>
+        </div>
+        <li class="q2">
+          価値観を否定されたり、人と意見や方針が異なったとき
+        </li>
+        <div class="q2">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>反論する<br>自分の意見を主張</p>
+            <p>穏便に受け流す<br>人に合わせる</p>
+          </div>
+        </div>
+        <li class="q3">
+          周りから評価されたり、注目されたとき
+        </li>
+        <div class="q3">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>心地よい<br>堂々と構える</p>
+            <p>身に余る<br>そわそわする</p>
+          </div>
+        </div>
+        <li class="q4">
+          達成したい目的があるとき
+        </li>
+        <div class="q4">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>より楽で確実なら<br>手段を選ばない</p>
+            <p>たとえ困難な道でも<br>仁義を守る</p>
+          </div>
+        </div>
+        <li class="q5">
+          「人」はどうあるべき？
+        </li>
+        <div class="q5">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>人は人に依存せず<br>自立すべき</p>
+            <p>人は人を思いやり<br>互いに支え合うべき</p>
+          </div>
+        </div>
+        <li class="q6">
+          人の親切な言動について
+        </li>
+        <div class="q6">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>何か裏がある<br>警戒する</p>
+            <p>心の底から感謝<br>信頼する</p>
+          </div>
+        </div>
+      </ol>
+      <button class="btn back">戻る</button>
+      <button class="btn next">次へ</button>
+    </div>
+    <div class="container1 diagnosis bf">
+      <ol class="bf-test extraversion">
+        <li class="q1">
+          どちらが好み？
+        </li>
+        <div class="q1">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>暇を持て余すほど<br>穏やか</p>
+            <p>暇を感じないほど<br>忙しい</p>
+          </div>
+        </div>
+        <li class="q2">
+          集団にいるとき、どちらのタイプ？
+        </li>
+        <div class="q2">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>目立たない聞き手</p>
+            <p>場を主導する人</p>
+          </div>
+        </div>
+        <li class="q3">
+          人に接する態度で当てはまるのはどちら？
+        </li>
+        <div class="q3">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>真面目・静か</p>
+            <p>陽気・にぎやか</p>
+          </div>
+        </div>
+        <li class="q4">
+          どちらに惹かれる？
+        </li>
+        <div class="q4">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>穏やか・安全</p>
+            <p>激しい・スリル</p>
+          </div>
+        </div>
+        <li class="q5">
+          どちらのタイプ？
+        </li>
+        <div class="q5">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>一人だと落ち着く<br>人と打ち解けない</p>
+            <p>人がいると満足<br>誰とでも打ち解ける</p>
+          </div>
+        </div>
+        <li class="q6">
+          他人と過ごすことについて
+        </li>
+        <div class="q6">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>時間が勿体ない<br>束縛感がある</p>
+            <p>心から楽しむ<br>充実感がある</p>
+          </div>
+        </div>
+      </ol>
+      <button class="btn back">戻る</button>
+      <button class="btn next">次へ</button>
+    </div>
+    <div class="container1 diagnosis bf">
+      <ol class="bf-test openness">
+        <li class="q1">
+          どちらが好き？
+        </li>
+        <div class="q1">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>いつも同じことをする</p>
+            <p>いつも違うことをする</p>
+          </div>
+        </div>
+        <li class="q2">
+          芸術への関わり方や考え方
+        </li>
+        <div class="q2">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>芸術活動・鑑賞しない<br>生きるには不要</p>
+            <p>芸術活動・鑑賞する<br>人生を彩る体験</p>
+          </div>
+        </div>
+        <li class="q3">
+          どちらのタイプ？
+        </li>
+        <div class="q3">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>感情に無頓着で、感情表現に乏しい</p>
+            <p>感情を自覚していて、感情表現豊か</p>
+          </div>
+        </div>
+        <li class="q4">
+          あなたの人生を左右するのは？
+        </li>
+        <div class="q4">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>事実・現実</p>
+            <p>想像・理想</p>
+          </div>
+        </div>
+        <li class="q5">
+          どちらに惹かれる？
+        </li>
+        <div class="q5">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>確立した揺らぎのない具体的な物事</p>
+            <p>解釈や試行の余地がある抽象的な物事</p>
+          </div>
+        </div>
+        <li class="q6">
+          既存の伝統や価値観、体制（社会・集団・ルールなど）に対して
+        </li>
+        <div class="q6">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>それを守り、その中で安定・満足を目指す</p>
+            <p>それに縛られず、時には覆して満足を目指す</p>
+          </div>
+        </div>
+      </ol>
+      <button class="btn back">戻る</button>
+      <button class="btn next">次へ</button>
+    </div>
+    <div class="container1 diagnosis bf">
+      <ol class="bf-test conscientiousness">
+        <li class="q1">
+          どちらのタイプ？
+        </li>
+        <div class="q1">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>今の状態に満足し、時間や労力の消費を避ける</p>
+            <p>目標を立て、時間や労力をかけて達成を目指す</p>
+          </div>
+        </div>
+        <li class="q2">
+          どちらのタイプ？
+        </li>
+        <div class="q2">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>即断即決<br>そそっかしい</p>
+            <p>石橋を叩いて渡る<br>優柔不断</p>
+          </div>
+        </div>
+        <li class="q3">
+          規則や義務、締め切りや決まりごとなどに対して
+        </li>
+        <div class="q3">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>気にせず自由・気楽にやる</p>
+            <p>不都合・面倒でも必ず守る</p>
+          </div>
+        </div>
+        <li class="q4">
+          常識やマナー、会社や組織などの社会秩序について
+        </li>
+        <div class="q4">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>窮屈で息苦しさを覚える</p>
+            <p>秩序を乱すことは許されない</p>
+          </div>
+        </div>
+        <li class="q5">
+          時間と労力を要する複雑で大変な作業について
+        </li>
+        <div class="q5">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>なかなか手につかない<br>途中で打ち切る</p>
+            <p>コツコツ取り組む<br>最後までやり抜く</p>
+          </div>
+        </div>
+        <li class="q6">
+          目標を立てた。将来の自分に対する予想は？
+        </li>
+        <div class="q6">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>いずれ忘れる<br>失敗している</p>
+            <p>何とかやり遂げる</p>
+          </div>
+        </div>
+      </ol>
+      <button class="btn back">戻る</button>
+      <button class="btn next">次へ</button>
+    </div>
+    <div class="container1 diagnosis bf">
+      <ol class="bf-test neuroticism">
+        <li class="q1">
+          不愉快な経験をしたとき
+        </li>
+        <div class="q1">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>全く気にしない<br>すぐ気持ちを整理</p>
+            <p>怒りを覚える<br>感情が高ぶる</p>
+          </div>
+        </div>
+        <li class="q2">
+          起こるかもしれない問題やトラブルについて
+        </li>
+        <div class="q2">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>何とかなる。ヨシ！</p>
+            <p>不安や心配に駆られる</p>
+          </div>
+        </div>
+        <li class="q3">
+          どちらのタイプ？
+        </li>
+        <div class="q3">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>いつも気分は晴れやか</p>
+            <p>いつも気分は曇り空</p>
+          </div>
+        </div>
+        <li class="q4">
+          自分の欲望・欲求について
+        </li>
+        <div class="q4">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>完全に制御できる<br>無欲</p>
+            <p>素直に従う<br>欲は満たしてこそ</p>
+          </div>
+        </div>
+        <li class="q5">
+          自分に対する他者の評価や考えについて
+        </li>
+        <div class="q5">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>どうでもいい</p>
+            <p>気になる</p>
+          </div>
+        </div>
+        <li class="q6">
+          予期しない問題が発生したとき
+        </li>
+        <div class="q6">
+          <p class="rValue"></p>
+          <input type="range" step="5">
+          <div>
+            <p>眉一つ動かさず完璧に対応</p>
+            <p>ヤベェパネェ<br>オワタ＼(^o^)／</p>
+          </div>
+        </div>
+      </ol>
+      <button class="btn back">戻る</button>
+      <button class="btn next">次へ</button>
+    </div>
+  </main>
+
+  <section class="footer-img">
+    <img src="../../img/common/Akagi_color.png" id="o-akagi">
+    <img src="../../img/common/Zuikaku_color.png" id="o-zuikaku">
+    <img src="../../img/common/footer_image.png" id="family">
+  </section>
+
+  <footer>
+    <div id="footer-area">
+      <div class="share">
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <p class="get-url"><i class="bi bi-link-45deg"></i>URL取得</p>
+      </div>
+      <div class="copyright">
+        <p>原作：艦隊これくしょん</p>
+        <a href="https://www.dmm.com/netgame/feature/kancolle.html" alt="「艦これ」公式サイト（DMM GAMES）" target="_blank" rel="noopener noreferrer">DMM GAMES</a>
+        <br>
+        <a href="http://kancolle-anime.jp" alt="アニメ「艦隊これくしょん -艦これ-」公式サイト" target="_blank" rel="noopener noreferrer">KADOKAWA</a>
+      </div>
+      <div class="addr">
+        <p>制作：Kindle5</p>
+        <address>
+          <a href="https://www.youtube.com/channel/UCoe8o2HHB-74pZ-XrAdh9Jg" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-youtube" alt="制作者のYouTubeチャンネル"></i>
+          </a>
+          <a href="https://www.nicovideo.jp/user/41763323" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-display" alt="制作者のニコニコ動画ユーザーページ"></i>
+          </a>
+          <a href="https://twitter.com/Kindle_Five" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-twitter" alt="制作者のTwitter"></i>
+          </a>
+        </address>      
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/chara_data.js"></script>
+  <script src="js/diagnosis.js"></script>
+</body>
+</html>
