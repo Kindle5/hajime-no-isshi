@@ -167,22 +167,25 @@
 
   const toTop = document.getElementById('to-top');
   const readMore = document.getElementById('read-more');
+  const targetElem = document.getElementById('target');
   const onScrollObserver = new IntersectionObserver(onScrollcallback);
-  onScrollObserver.observe(document.getElementById('target'));
-  toTop.addEventListener('click', e => {
-    e.preventDefault();
-    const scrOp = {
-      top: 0,
-      left:0,
-      behavior: 'smooth',
-    }
-    // トップとそれ以外のページで挙動を場合分け
-    if (toTop.parentElement.className === 'box-scroll') {
-      document.querySelector('main.sb-main').scrollTo(scrOp);
-    } else {
-      window.scrollTo(scrOp);
-    }
-  });
+  if (targetElem !== null) {
+    onScrollObserver.observe(targetElem);
+    toTop.addEventListener('click', e => {
+      e.preventDefault();
+      const scrOp = {
+        top: 0,
+        left:0,
+        behavior: 'smooth',
+      }
+      // トップとそれ以外のページで挙動を場合分け
+      if (toTop.parentElement.className === 'box-scroll') {
+        document.querySelector('main.sb-main').scrollTo(scrOp);
+      } else {
+        window.scrollTo(scrOp);
+      }
+    });
+  }
 
   // 隠し要素表示イベント
   function appendOmake() { // メニューに項目を追加
