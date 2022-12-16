@@ -1,0 +1,323 @@
+.prevent {
+  pointer-events: none;
+}
+
+main.diagnosis {
+  position: relative;
+  overflow-x: hidden;
+}
+main.diagnosis .endPage {
+  display: block;
+}
+
+main.diagnosis .result {
+  margin-top: 16px;
+}
+
+main.diagnosis .result .img-area {
+  position: relative;
+  width: 100%;
+  margin-bottom: 16px;
+}
+main.diagnosis .result .img-area > ul {
+  margin: 0 auto;
+  width: min(240px, 24vw);
+  padding: 4px 4px;
+  margin-bottom: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  filter: blur(20px);
+  transform: translateY(-64px);
+  animation: showConcRate 1s 4.6s forwards ease-out;
+  opacity: 0;
+}
+@keyframes showConcRate {
+  0% {
+    filter: blur(20px);
+    transform: translateY(-64px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    filter: blur(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+main.diagnosis .result .img-area > ul li {
+  color: #fff;
+  font-size: min(18px, 3vw);
+  font-weight: bold;
+  text-shadow: rgb(86, 221, 255) 0 0 4px;
+}
+main.diagnosis .result .img-area > ul li span {
+  font-size: min(30px, 5vw);
+  line-height: 0.6em;
+}
+main.diagnosis .result .img-area #r-img {
+  width: min(100%, 540px);
+  transform-origin: center center;
+  opacity: 0;
+  z-index: 2;
+}
+#kirakira {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  mix-blend-mode: lighten;
+  pointer-events: none;
+}
+#kirakira img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+
+main.diagnosis .result .graph {
+  padding: 16px 0;
+  margin: 0 auto;
+  width: min(100%, 800px);
+  background: rgba(0, 80, 0, 0.4);
+}
+main.diagnosis .result .graph h3 {
+  margin-bottom: 8px;
+}
+main.diagnosis .result .graph h3 + p {
+  margin-bottom: 12px;
+  font-weight: bolder;
+  font-family: "Yu Mincho", Arial, Helvetica, sans-serif;
+}
+
+main.diagnosis .result .graph .row {
+  position: relative;
+  width: min(100%, 600px);
+  margin: 0 auto;
+  padding: 6px 0;
+  background: #000;
+}
+main.diagnosis .result .graph .row + .row {
+  margin-top: 8px;
+}
+
+main.diagnosis .result .graph .label {
+  display: flex;
+  justify-content: space-between;
+}
+main.diagnosis .result .graph .value {
+  display: flex;
+  transform: translateY(1px);
+}
+main.diagnosis .result .graph span {
+  color: #fff;
+  text-shadow: #fff 0 0 4px;
+}
+main.diagnosis .result .graph .value + .label {
+  margin-top: 6px;
+}
+
+main.diagnosis .result .graph .barspace {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 18px;
+}
+main.diagnosis .result .graph .barspace .case {
+  width: calc(50% - 32px);
+  height: 100%;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+}
+main.diagnosis .result .graph .barspace .case.pos {
+  background: linear-gradient(to left, rgba(255, 255, 0), rgba(255, 0, 0));
+}
+main.diagnosis .result .graph .barspace .case.neg {
+  background: linear-gradient(to right, rgba(0, 255, 255), rgba(0, 0, 255));
+}
+main.diagnosis .result .graph .barspace .bi {
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  z-index: 1;
+}
+main.diagnosis .result .graph .barspace .bi.show {
+  transform: scale(1.2);
+}
+main.diagnosis .result .graph .barspace .bi:hover {
+  cursor: pointer;
+}
+main.diagnosis .result .graph .barspace .pos .pole {
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+main.diagnosis .result .graph .barspace .neg .pole {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  background: #000;
+}
+
+main.diagnosis .result .graph .value span {
+  z-index: 1;
+  opacity: 0;
+}
+main.diagnosis .result .graph .value .pos {
+  margin-left: 5%;
+}
+main.diagnosis .result .graph .value .neg {
+  margin-right: 5%;
+  margin-left: auto;
+}
+main.diagnosis .result .graph .value .sup {
+  margin-left: 8px;
+}
+
+main.diagnosis .result .graph .facet {
+  margin-top: 8px;
+  font-size: 0.9em;
+  width: 90%;
+  margin: 8px auto;
+}
+main.diagnosis .result .graph .facet .barspace {
+  width: 90%;
+}
+main.diagnosis .result .graph .facet .barspace .case {
+  width: calc(50% - 50px);
+  height: 100%;
+  border: 1px solid #fff;
+}
+
+main.diagnosis .result .comments {
+  width: min(100%, 800px);
+  margin: 16px auto 0;
+  background: rgba(80, 0, 0, 0.4);
+  padding: 0 0 16px;
+}
+main.diagnosis .result .comments article {
+  width: min(100%, 700px);
+  margin: 16px auto;
+  text-align: left;
+}
+main.diagnosis .result .comments h3 {
+  padding-top: 32px;
+}
+main.diagnosis .result .comments h3:nth-child(1) {
+  padding-top: 16px;
+}
+main.diagnosis .result .comments article div {
+  padding: 4px 0;
+  background: rgba(0, 0, 108, 0.4);
+}
+main.diagnosis .result .comments article div:nth-child(odd) {
+  background: rgba(0, 0, 0, 0.8);
+}
+main.diagnosis .result .comments article div + div {
+  margin-top: 0.8em;
+}
+main.diagnosis .result .comments article div .bfcomme {
+  color: #fdb;
+  text-shadow: #fa0 0 0 4px;
+}
+main.diagnosis .result .comments article div .bfcomme + p {
+  margin-top: 8px;
+}
+main.diagnosis .result .comments article h4 {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+main.diagnosis .result .comments .attention {
+  margin: 8px auto;
+}
+main.diagnosis .result .comments .attention .attention {
+  padding: 4px;
+  background: none;
+}
+
+main.diagnosis .result .comments #attr-eng {
+  font-style: italic;
+  margin: 0 8px;
+}
+main.diagnosis .result .comments #attr-eng::before {
+  content: '~';
+  margin-right: 0.2em;
+}
+main.diagnosis .result .comments #attr-eng::after {
+  content: '~';
+  margin-left: 0.2em;
+}
+
+main.diagnosis .result .comments #bpc {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+main.diagnosis .result .comments #bpc .bpc-t {
+  margin: 8px 0;
+  flex-basis: 100%;
+  text-align: center;
+}
+main.diagnosis .result .comments #bpc div {
+  margin: 8px 0;
+  background: initial;
+}
+main.diagnosis .result .comments #bpc .bpc-box {
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main.diagnosis .result .comments #bpc .bpc-box img {
+  width: min(100%, 120px);
+}
+
+#share article div {
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+#share article div div {
+  width: 198px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+#share article div div .bi-twitter {
+  font-size: 48px;
+  cursor: pointer;
+  user-select: none;
+}
+#share article div div .bi-twitter:active {
+  opacity: 0.6;
+}
+#share article div h4 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+#share article div h4 i {
+  font-size: 32px;
+  cursor: pointer;
+}
+#share article div h4 span {
+  cursor: pointer;
+}
+
+#try h3 {
+  padding-top: 32px;
+}
+#try article div {
+  background: none;
+  text-align: center;
+}
+
+#rcdata {
+  display: none;
+}
