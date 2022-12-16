@@ -1142,7 +1142,7 @@ function setResult() { // 診断結果を反映する処理
       divElem.classList.add('bpc-box');
 
       const bpcImgElem = createElem('img');
-      bpcImgElem.src = `../../img/character/face_${chara.name}.jpg`;
+      bpcImgElem.src = `../../img/character/face_${chara.name.toLowerCase()}.jpg`;
       
       const bpcNameElem = createElem('h4');
       bpcNameElem.classList.add('name');
