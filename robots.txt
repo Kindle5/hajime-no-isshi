@@ -1,1 +1,1 @@
-Sitemap: https://kindle5.github.io/hajime-no-isshi/sitemap.xml
+User-agent: *Sitemap: https://kindle5.github.io/hajime-no-isshi/
