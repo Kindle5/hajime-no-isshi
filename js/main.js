@@ -232,7 +232,7 @@
   // サイトURL共有
   const getUrlBtn = document.querySelector('.share .get-url');
   getUrlBtn.addEventListener('click', e => {
-      let url = location.host;
+      let url = location;
       let title = document.title;
       if (!Boolean(url)) {
         url = 'URLを取得できませんでした'
