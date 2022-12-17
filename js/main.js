@@ -169,7 +169,7 @@
   const readMore = document.getElementById('read-more');
   const targetElem = document.getElementById('target');
   const onScrollObserver = new IntersectionObserver(onScrollcallback);
-  if (targetElem !== null) {
+  if (targetElem) {
     onScrollObserver.observe(targetElem);
     toTop.addEventListener('click', e => {
       e.preventDefault();
@@ -229,8 +229,8 @@
 
   const o_akagi = document.getElementById('o-akagi');
   const o_zuikaku = document.getElementById('o-zuikaku');
-  o_akagi.addEventListener('click', akagiColored);
-  o_zuikaku.addEventListener('click', zuikakuColored);
+  if (o_akagi) o_akagi.addEventListener('click', akagiColored);
+  if (o_zuikaku) o_zuikaku.addEventListener('click', zuikakuColored);
 
   // サイトURL共有
   const getUrlBtn = document.querySelector('.share .get-url');
