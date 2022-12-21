@@ -214,6 +214,7 @@
   }
 
   function akagiColored() {
+    if (o_akagi.className === 'rotatein') return;
     o_akagi.classList.add('rotatein');
     if (o_zuikaku.className === 'rotatein') {
       setTimeout(appendOmake, 800);
@@ -221,6 +222,7 @@
   }
 
   function zuikakuColored() {
+    if (o_zuikaku.className === 'rotatein') return;
     o_zuikaku.classList.add('rotatein');
     if (o_akagi.className === 'rotatein') {
       setTimeout(appendOmake, 800);
